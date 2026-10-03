@@ -6,7 +6,7 @@
 ____________________________________
 
 
-**You will require an Nvidia driver of at least 565.xx or higher and an Nvidia GPU of Maxwell architecture or newer to use the OptiX denoiser.**
+* ***You will require an Nvidia driver of at least 565.xx or higher and an Nvidia GPU of Maxwell architecture or newer to use the OptiX denoiser.***
 
 
 You need to at least have an output set for the app to run. If you also have them, you can add an albedo AOV or albedo and normal AOVs to improve the denoising. All images should be the same resolutions, not meeting this requirement will lead to unexpected results (likely a crash).
