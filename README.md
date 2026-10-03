@@ -1,6 +1,7 @@
 # NVIDIA AI Denoiser Fork, now comes with it's own GUI.
 
 **CLI - Provided by Declan Rusell.**
+____________________________________
 **GUI - Provided by Subhajit Maji.**
 
 
