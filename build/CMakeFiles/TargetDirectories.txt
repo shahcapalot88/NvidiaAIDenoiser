@@ -1,0 +1,3 @@
+C:/Users/Homla/Desktop/develop/nvidia-denoiser/build/CMakeFiles/OptiXDenoiserGUI.dir
+C:/Users/Homla/Desktop/develop/nvidia-denoiser/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Homla/Desktop/develop/nvidia-denoiser/build/CMakeFiles/ZERO_CHECK.dir

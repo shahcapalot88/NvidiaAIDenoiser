@@ -1,37 +1,21 @@
-cmake_minimum_required(VERSION 3.10)
-project(Denoiser)
+cmake_minimum_required(VERSION 3.15)
+project(OptiXDenoiserGUI LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 20)
-include(GNUInstallDirs)
+if(NOT WIN32)
+  message(FATAL_ERROR "This is a Win32 application and only builds on Windows.")
+endif()
+enable_language(RC)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmake)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Add CUDA
-find_package(CUDA 12.9 REQUIRED)
+# Static CRT: no Visual C++ redistributable needed on the target PC.
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
-find_package(OpenImageIO CONFIG REQUIRED)
-
-message(STATUS "Found OpenImageIO: ${OpenImageIO_DIR}"
-               " (includes: ${OpenImageIO_INCLUDE_DIRS}, library: ${OpenImageIO_LIBRARIES})")
-message(STATUS "Found CUDA: ${CUDA_TOOLKIT_ROOT_DIR}"
-               " (includes: ${CUDA_INCLUDE_DIRS}, library: ${CUDA_cudart_static_LIBRARY})")
-
-# Include directories
-include_directories("contrib/optix/include"
-                    ${CUDA_INCLUDE_DIRS})
-
-# Source files
-set(SOURCES src/main.cpp)
-
-# Executable
-add_executable(${PROJECT_NAME} ${SOURCES})
-
-# Link libraries
-target_link_libraries(${PROJECT_NAME}
-                      ${CUDA_cudart_static_LIBRARY}
-                      openimageio::openimageio)
-
-# Install app and Conan OpenImageIO artifacts explicitly.
-install(TARGETS ${PROJECT_NAME}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
-
+add_executable(OptiXDenoiserGUI WIN32 src/main.cpp res/app.rc)
+target_compile_definitions(OptiXDenoiserGUI PRIVATE UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX)
+target_link_libraries(OptiXDenoiserGUI PRIVATE
+  user32 gdi32 comdlg32 shell32 ole32 dwmapi comctl32 uxtheme)
+if(MSVC)
+  target_compile_options(OptiXDenoiserGUI PRIVATE /W3 /utf-8)
+endif()

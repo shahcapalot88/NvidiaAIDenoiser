@@ -1,0 +1,10 @@
+^C:\USERS\HOMLA\DESKTOP\DEVELOP\NVIDIA-DENOISER\BUILD\CMAKEFILES\143787291ACB4E6D73D69F6BAB45811C\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/Homla/Desktop/develop/nvidia-denoiser -BC:/Users/Homla/Desktop/develop/nvidia-denoiser/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Homla/Desktop/develop/nvidia-denoiser/build/OptiXDenoiserGUI.slnx
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
