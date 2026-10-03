@@ -1,8 +1,9 @@
 # NVIDIA AI Denoiser Fork, now comes with it's own GUI.
 
 **CLI - Provided by Declan Rusell.**
-____________________________________
+
 **GUI - Provided by Subhajit Maji.**
+____________________________________
 
 
 **You will require an Nvidia driver of at least 565.xx or higher and an Nvidia GPU of Maxwell architecture or newer to use the OptiX denoiser.**
