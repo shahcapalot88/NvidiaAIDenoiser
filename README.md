@@ -1,18 +1,9 @@
-# NVidia AI Denoiser command line tool
+# NVidia AI Denoiser Fork, now comes with it's own GUI
 
+CLI - Provided by 
 This is a simple implementation of NVidia AI denoiser. You can find a pre-built windows distribution in the releases tab of this repro. To build you will need to install the CUDA took availible from [here](https://developer.nvidia.com/cuda-downloads) and the OptiX 7/8 SDK availible [here](https://developer.nvidia.com/designworks/optix/download).
 
-**You will require an Nvidia driver of at least 465.84 or higher and an Nvidia GPU of Maxwell architecture or newer to use the OptiX denoiser.**
-
-## Building
-```
-python3 -m pip install conan
-conan profile detect --force
-conan install . --build=missing -s:h compiler.cppstd=20 -s:b compiler.cppstd=20
-cmake -S . -B build -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_TOOLCHAIN_FILE=build/generators/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./out
-cmake --build build --config Release
-cmake --install build --config Release
-```
+**You will require an Nvidia driver of at least 565.xx or higher and an Nvidia GPU of Maxwell architecture or newer to use the OptiX denoiser.**
 
 ## Usage
 Command line parameters
