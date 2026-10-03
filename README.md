@@ -1,32 +1,13 @@
-# NVidia AI Denoiser Fork, now comes with it's own GUI
+# NVIDIA AI Denoiser Fork, now comes with it's own GUI.
 
-CLI - Provided by 
-This is a simple implementation of NVidia AI denoiser. You can find a pre-built windows distribution in the releases tab of this repro. To build you will need to install the CUDA took availible from [here](https://developer.nvidia.com/cuda-downloads) and the OptiX 7/8 SDK availible [here](https://developer.nvidia.com/designworks/optix/download).
+**CLI - Provided by Declan Rusell.**
+**GUI - Provided by Subhajit Maji.**
+
 
 **You will require an Nvidia driver of at least 565.xx or higher and an Nvidia GPU of Maxwell architecture or newer to use the OptiX denoiser.**
 
-## Usage
-Command line parameters
-* Command line parameters
-* -v [int]         : log verbosity level 0:disabled 1:simple 2:full (default 2)
-* -i [string]      : path to input image
-* -pi [string]     : path previous denoised result (optional, required for temporal denoising)
-* -aov%d [string]  : path to additional input AOV image to denoise
-* -oaov%d [string] : path to additional AOV output image to denoise
-* -o [string]      : path to output image
-* -os [string]     : output suffix appended to input filename to create output image filename
-* -a [string]      : path to input albedo AOV (optional)
-* -n [string]      : path to input normal AOV (optional, requires albedo AOV)
-* -mv [string]     : path to motion vector AOV (optional, required for temporal denoising)
-* -pid [string]    : path to prevoius denoiser-internal per-frame data (optional, required for temporal denoising)
-* -oid [string]    : path to current denoiser-internal per-frame data (optional, required for temporal denoising)
-* -b [float]       : blend amount (default 0)
-* -hdr [int]       : Use HDR training data (default 1)
-* -gpu [int]       : Select which GPU to use for denoising (default 0)
-* -repeat [int]    : Execute the denoiser N times. Useful for profiling.
-* -h/--help : Lists command line parameters
 
-You need to at least have an input and output for the app to run. If you also have them, you can add an albedo AOV or albedo and normal AOVs to improve the denoising. All images should be the same resolutions, not meeting this requirement will lead to unexpected results (likely a crash).
+You need to at least have an output set for the app to run. If you also have them, you can add an albedo AOV or albedo and normal AOVs to improve the denoising. All images should be the same resolutions, not meeting this requirement will lead to unexpected results (likely a crash).
 
 For best results provide as many of the AOVs as possible to the denoiser. Generally the more information the denoiser has to work with the better. The denoiser also prefers images rendered with a box filter or by using FIS.
 
@@ -43,22 +24,6 @@ Here is a quick example scene that uses the images that can be found in the imag
   <img src="https://github.com/DeclanRussell/NvidiaAIDenoiser/blob/master/images/RGBA_denoised.png" alt="denoise_test"/>
 </p>
 
-# Simple sequence batch script
-As it has been widely requested here is a very simple batch script for denoising sequences until I have time to implement something proper into the application itself. It will do the most simple denoising without any feature AOVs. Save the following code into a file named Sequence.bat and place it into the directory where your images are saved. Running this script will denoise all files image files that match the chosen file extension in the folder. There are three parameters that you will need to edit in the script,
-
-* FILE_EXTENSION – the file extension of your image
-* PATH_TO_DENOISER – the full directory of the Denoiser.exe
-* OUTPUT_PREFIX – a prefix which is prepended to the name of the image to create the output name. I.e. with the prefix denoised_ the image test.jpg will become denoised_test.jpg
-
-```
-SET FILE_EXTENSION=jpg
-SET PATH_TO_DENOISER=D:\Projects\NvidiaAIDenoiser\Denoiser_v2.0
-SET OUTPUT_PREFIX=denoised_
-
-for /r %%v in (*.%FILE_EXTENSION%) do %PATH_TO_DENOISER%\Denoiser.exe -i "%%~nv.%FILE_EXTENSION%" -o "%OUTPUT_PREFIX%%%~nv.%FILE_EXTENSION%"
-
-cmd /k
-```
 
 # License info
 This project is shared under the [MIT License](https://mit-license.org/).
